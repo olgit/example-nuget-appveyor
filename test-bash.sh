@@ -16,7 +16,7 @@ urlencode() {
     LC_COLLATE=$old_lc_collate
 }
 
-tmp=(./blackduck/*.jsonld)
+tmp=(blackduck/*.jsonld)
 REPORT_LOCATION=$(echo "${tmp[0]}")
 
 if [ ! -f "$REPORT_LOCATION" ]; then
