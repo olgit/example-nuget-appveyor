@@ -16,10 +16,8 @@ urlencode() {
     LC_COLLATE=$old_lc_collate
 }
 
-cd blackduck
-tmp=(*.jsonld)
-REPORT_LOCATION="./blackduck/"$(echo "${tmp[0]}")
-cd ..
+tmp=(./blackduck/*.jsonld)
+REPORT_LOCATION=$(echo "${tmp[0]}")
 
 if [ ! -f "$REPORT_LOCATION" ]; then
     echo "Report location not provided, or file not found for upload."
@@ -52,7 +50,7 @@ if [ ! -f "$REPORT_LOCATION" ]; then
 fi
 
 #Log that the script download is complete and proceeding
-echo "Uploading report at $1"
+echo "Uploading report at $REPORT_LOCATION"
 
 #Log the curl version used
 curl --version
@@ -69,7 +67,7 @@ COPILOT_BRANCH=$(urlencode $APPVEYOR_REPO_BRANCH)
 
 COPILOT_URL="https://copilot-valid.blackducksoftware.com/hub/import?provider=github&repository=$COPILOT_REPO_SLUG&branch=$COPILOT_BRANCH&pull_request=$COPILOT_PULL_REQUEST"
 
-curl -g -v -f -X POST -d @$1 -H 'Content-Type:application/ld+json' "$COPILOT_URL"
+curl -g -v -f -X POST -d @$REPORT_LOCATION -H 'Content-Type:application/ld+json' "$COPILOT_URL"
 
 #Exit with the curl command's output status
 exit $?
