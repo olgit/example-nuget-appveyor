@@ -7,7 +7,4 @@ build:
 on_success:
 - nuget install Hub-Nuget -Version 1.1.0
 - Hub-NuGet.1.1.0\tools\buildBom.exe --hub_deploy_bdio=false --hub_create_merged_bdio=true
-- cd blackduck
-- dir
-- cd ..
-- bash test-bash.sh ./blackduck/*.jsonld
+- bash test-bash.sh

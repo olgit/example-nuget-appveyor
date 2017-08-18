@@ -16,7 +16,10 @@ urlencode() {
     LC_COLLATE=$old_lc_collate
 }
 
-if [ $# -eq 0 ] || [ ! -f "$1" ]; then
+tmp=(./blackduck/*.jsonld)
+REPORT_LOCATION=$(echo "${tmp[0]}")
+
+if [ ! -f "$REPORT_LOCATION" ]; then
     echo "Report location not provided, or file not found for upload."
     
     if [ ! -f "$1" ]; then
