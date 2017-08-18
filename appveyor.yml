@@ -10,4 +10,4 @@ on_success:
 - cd blackduck
 - dir
 - cd ..
-- bash test-bash.sh ./blackduck/*_bdio.jsonld
+- bash test-bash.sh ./blackduck/*.jsonld
